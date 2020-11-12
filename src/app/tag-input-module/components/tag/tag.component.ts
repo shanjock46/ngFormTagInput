@@ -220,8 +220,6 @@ export class TagComponent {
     // const ngModalBindTransformPipe = new ngModalBindTransform;
     if (typeof item === 'string') {
       item = this.NgBindTransformFilter.transform(item);
-      console.log('NgBindTransformFilter');
-      console.log(item);
     }
     return typeof item === 'string' ? item : item[this.displayBy];
   }

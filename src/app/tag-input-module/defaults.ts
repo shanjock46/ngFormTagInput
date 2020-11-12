@@ -8,6 +8,7 @@ export interface TagInputOptions {
   separatorKeys: string[];
   separatorKeyCodes: number[];
   maxItems: number;
+  minDays: number;
   placeholder: string;
   secondaryPlaceholder: string;
   validators: ValidatorFn[];
@@ -48,6 +49,7 @@ export const defaults = {
     separatorKeys: [],
     separatorKeyCodes: [],
     maxItems: Infinity,
+    minDays: 1,
     placeholder: PLACEHOLDER,
     secondaryPlaceholder: SECONDARY_PLACEHOLDER,
     validators: [],

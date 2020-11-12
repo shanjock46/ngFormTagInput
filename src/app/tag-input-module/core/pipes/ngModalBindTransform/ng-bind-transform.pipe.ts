@@ -6,8 +6,6 @@ import {Pipe, PipeTransform} from '@angular/core';
 export class NgBindTransformPipe implements PipeTransform {
 
   transform(value: string, key: string = null): string {
-    // console.log("inside NgBindTransformPipe");
-    // console.log(value);
     if (typeof value === 'string') {
       const slicedNum = Number(value.slice(0, -1));
       if (slicedNum.toString() !== 'NaN') {
@@ -22,7 +20,6 @@ export class NgBindTransformPipe implements PipeTransform {
         }
       }
     }
-    // console.log(value);
     return value;
   }
 
