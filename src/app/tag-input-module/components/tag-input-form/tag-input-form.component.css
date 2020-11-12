@@ -1,0 +1,19 @@
+.ng2-tag-input__text-input {
+  display: inline;
+  vertical-align: middle;
+  border: none;
+  padding: 0 .5rem;
+  height: 38px;
+  font-size: 1em;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.ng2-tag-input__text-input:focus {
+  outline: 0;
+}
+
+.error-message {
+  font-size: .8em;
+  color: #f44336;
+  margin: .5em 0 0;
+}

@@ -1,0 +1,20 @@
+<div>
+  <h2>Days tag input module</h2>
+  <app-tag-input
+    [(ngModel)]="items"
+    [errorMessages]="errorMessages"
+    [modelAsStrings]="true"
+    [validators]="validators"
+  ></app-tag-input>
+
+  <!--custom template-->
+  <!--<app-tag-input [(ngModel)]="items" [modelAsStrings]="true">
+    <ng-template let-item="item">
+      {{ item | ngModalBindTransform}}
+    </ng-template>
+  </app-tag-input>-->
+
+  <div class="ng-modal-val"><span>ngModel: </span><span>{{ items | json }}</span></div>
+</div>
+
+

@@ -1,0 +1,40 @@
+<div (click)="select($event)"
+     (mousedown)="rippleState='clicked'"
+     (mouseup)="rippleState='none'"
+     [attr.aria-label]="getDisplayValue(model)"
+     [attr.tabindex]="-1"
+     [class.disabled]="disabled"
+     [ngSwitch]="!!template">
+
+  <div *ngSwitchCase="true" [attr.contenteditable]="editing">
+    <!-- CUSTOM TEMPLATE -->
+    <ng-template
+      [ngTemplateOutletContext]="{ item: model, index: index }"
+      [ngTemplateOutlet]="template">
+    </ng-template>
+  </div>
+
+  <div *ngSwitchCase="false" class="tag-wrapper">
+    <!-- TAG NAME -->
+    <div (click)="editing ? $event.stopPropagation() : undefined"
+         [attr.contenteditable]="editing"
+         [attr.title]="getDisplayValue(model)"
+         class="tag__text inline"
+         spellcheck="false">
+      {{ getDisplayValue(model) }}
+    </div>
+
+    <!-- 'X' BUTTON -->
+    <app-delete-icon (click)="remove($event)"
+                     *ngIf="isDeleteIconVisible()"
+                     aria-label="Remove tag"
+                     class="delete-icon"
+                     role="button">
+    </app-delete-icon>
+  </div>
+</div>
+
+<app-tag-ripple *ngIf="isRippleVisible" [attr.tabindex]="-1"
+                [state]="rippleState"
+                class="tag-ripple-tag">
+</app-tag-ripple>

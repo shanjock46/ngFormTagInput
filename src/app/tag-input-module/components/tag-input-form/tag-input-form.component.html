@@ -1,0 +1,24 @@
+<!-- form -->
+<form (ngSubmit)="submit($event)" [formGroup]="form">
+  <input #input
+
+         (blur)="onBlur.emit($event)"
+         (focus)="onFocus.emit($event)"
+         (keydown)="onKeyDown($event)"
+         (keyup)="onKeyUp($event)"
+         [attr.aria-label]="placeholder"
+         [attr.disabled]="disabled ? disabled : null"
+
+         [attr.id]="inputId"
+         [attr.placeholder]="placeholder"
+         [attr.tabindex]="tabindex"
+         [ngClass]="inputClass"
+         autocomplete="off"
+         class="ng2-tag-input__text-input"
+
+         formControlName="item"
+         minlength="1"
+         tabindex="{{ disabled ? -1 : tabindex ? tabindex : 0 }}"
+         type="text"
+  />
+</form>

@@ -1,0 +1,73 @@
+<div
+  (click)="focus(true, false)"
+  [attr.tabindex]="-1"
+  [class.ng2-tag-input--disabled]="disable"
+  [class.ng2-tag-input--focused]="isInputFocused()"
+  [class.ng2-tag-input--invalid]="hasErrors()"
+  [class.ng2-tag-input--loading]="isLoading"
+  [ngClass]="theme"
+  class="ng2-tag-input"
+>
+
+  <!-- TAGS -->
+  <div class="ng2-tags-container">
+    <app-tag (onKeyDown)="handleKeydown($event)"
+             (onRemove)="onRemoveRequested(item, i)"
+             (onSelect)="selectItem(item)"
+             *ngFor="let item of items; let i = index; trackBy: trackBy"
+             [@animation]="animationMetadata"
+             [attr.tabindex]="0"
+             [canAddTag]="isTagValid"
+             [disabled]="disable"
+             [displayBy]="displayBy"
+             [draggable]="dragZone"
+             [editable]="editable"
+             [hasRipple]="ripple"
+             [identifyBy]="identifyBy"
+             [index]="i"
+             [model]="item"
+             [removable]="removable"
+             [template]="!!hasCustomTemplate() ? templates.first : undefined"
+             class="ng-tags"
+    >
+    </app-tag>
+
+    <app-tag-input-form
+      (click)="undefined"
+      (onBlur)="blur()"
+      (onKeydown)="fireEvents('keydown', $event)"
+      (onKeyup)="fireEvents('keyup', $event)"
+      (onSubmit)="onFormSubmit()"
+      [asyncValidators]="asyncValidators"
+      [disabled]="disable"
+      [hidden]="maxItemsReached"
+      [inputClass]="inputClass"
+      [inputId]="inputId"
+      [inputText]="inputText"
+      [placeholder]="items.length ? placeholder : secondaryPlaceholder"
+      [tabindex]="tabindex"
+      [validators]="validators"
+    >
+    </app-tag-input-form>
+  </div>
+
+  <div
+    *ngIf="isProgressBarVisible$ | async"
+    class="progress-bar"
+  ></div>
+</div>
+
+<!-- ERRORS -->
+<div
+  *ngIf="hasErrors()"
+  [ngClass]="theme"
+  class="error-messages"
+>
+  <p
+    *ngFor="let error of errors"
+    class="error-message"
+  >
+    <span>{{ error }}</span>
+  </p>
+</div>
+<ng-content></ng-content>

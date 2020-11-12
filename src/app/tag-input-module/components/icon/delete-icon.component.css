@@ -1,0 +1,9 @@
+.delete-icon:hover {
+  -webkit-transform: scale(1.5) translateY(-3px);
+  transform: scale(1.5) translateY(-3px);
+}
+
+.delete-icon svg {
+  vertical-align: bottom;
+  height: 34px;
+}
