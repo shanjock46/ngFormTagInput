@@ -78,6 +78,12 @@ export class TagInputComponent extends TagInputAccessorDirective implements OnIn
   @Input() public maxItems: number = defaults.tagInput.maxItems;
 
   /**
+   * @name minDays
+   * @desc minDays Required
+   */
+  @Input() public minDays: number = defaults.tagInput.minDays;
+
+  /**
    * @name validators
    * @desc array of Validators that are used to validate the tag before it gets appended to the list
    */
@@ -482,8 +488,6 @@ export class TagInputComponent extends TagInputAccessorDirective implements OnIn
     const trim = (val: TagModel, key: string): TagModel => {
       if (typeof val === 'string' && key === 'value') {
         val = this.NgModalTransformFilter.transform(val, key);
-        console.log('NgModalTransformFilter');
-        console.log(val);
       }
       return typeof val === 'string' ? val.trim() : val[key];
     };
@@ -522,6 +526,13 @@ export class TagInputComponent extends TagInputAccessorDirective implements OnIn
    * @param $event
    */
   public fireEvents(eventName: string, $event?): void {
+    console.log($event);
+    if($event.key === 'Tab' || $event.shiftKey && $event.keyCode == 9){
+      if(this.items.length == 0){
+        this.onValidationError.emit({req: true});
+        return;
+      }
+    }
     this.listeners[eventName].forEach(listener => listener.call(this, $event));
   }
 
